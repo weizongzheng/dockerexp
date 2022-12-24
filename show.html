@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ML Results</title>
+  <style>
+    table {
+      border-collapse: collapse;
+    }
+    td, th {
+      border: 1px solid black;
+      padding: 5px;
+    }
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+</head>
+<body>
+  <h1>ML Results</h1>
+  <h2>Basic Information</h2>
+  <ul>
+    <li>Model: Random Forest</li>
+    <li>Training set size: 1000</li>
+    <li>Validation set size: 500</li>
+    <li>Test set size: 500</li>
+  </ul>
+  <h2>Accuracy</h2>
+  <canvas id="accuracy-chart"></canvas>
+  <script>
+    var ctx = document.getElementById('accuracy-chart').getContext('2d');
+    var chart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['Training', 'Validation', 'Test'],
+        datasets: [{
+          label: 'Accuracy',
+          data: [0.95, 0.88, 0.92],
+          backgroundColor: 'rgba(0, 0, 255, 0.2)',
+          borderColor: 'rgba(0, 0, 255, 1)',
+          borderWidth: 1,
+          fill: false
+        }]
+      },
+      options: {
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
+            }
+          }]
+        }
+      }
+    });
+  </script>
+  <h2>Confusion Matrix</h2>
+  <table>
+    <tr>
+      <th></th>
+      <th>Predicted Positive</th>
+      <th>Predicted Negative</th>
+    </tr>
+    <tr>
+      <th>Actual Positive</th>
+      <td>100</td>
+      <td>10</td>
+    </tr>
+    <tr>
+      <th>Actual Negative</th>
+      <td>20</td>
+      <td>170</td>
+    </tr>
+  </table>
+  <h2>Feature Importances</h2>
+  <canvas id="importances-chart"></canvas>
+  <script>
+    var ctx = document.getElementById('importances-chart').getContext('2d');
+    var chart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: ['Feature 1', 'Feature 2', 'Feature 3', 'Feature 4'],
+        datasets: [{
+          label: 'Importance',
+          data: [0.3, 0.1, 0.2, 0.4],
+          backgroundColor: 'rgba(0, 0, 255, 0.2)',
+          borderColor: 'rgba(0, 0, 255, 1)',
+          borderWidth: 1
+        }]
+      },
+      options: {
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
+            }
+          }]
+        }
+      }
+    });
+  </script>
+</body>
+</html>
+
